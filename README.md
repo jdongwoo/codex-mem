@@ -1,5 +1,9 @@
 # codex-mem
 
+![license](https://img.shields.io/github/license/jdongwoo/codex-mem)
+![stars](https://img.shields.io/github/stars/jdongwoo/codex-mem?style=flat)
+![issues](https://img.shields.io/github/issues/jdongwoo/codex-mem)
+
 Persistent memory for Codex using a local SQL database.
 
 - Fast, simple CLI workflow
