@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="120" viewBox="0 0 520 120">
+  <rect width="520" height="120" rx="16" fill="#0b0f14"/>
+  <text x="32" y="72" font-family="SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="42" fill="#e6edf3">codex-mem</text>
+  <text x="320" y="72" font-family="SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="20" fill="#9fb5cc">SQL memory</text>
+</svg>

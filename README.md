@@ -1,10 +1,14 @@
 # codex-mem
 
+![logo](docs/logo.svg)
+
 ![license](https://img.shields.io/github/license/jdongwoo/codex-mem)
 ![stars](https://img.shields.io/github/stars/jdongwoo/codex-mem?style=flat)
 ![issues](https://img.shields.io/github/issues/jdongwoo/codex-mem)
 
 Persistent memory for Codex using a local SQL database.
+
+If this is useful, please star the repo.
 
 - Fast, simple CLI workflow
 - SQLite by default, PostgreSQL supported
