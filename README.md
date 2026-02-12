@@ -18,6 +18,18 @@ python3 scripts/memory_add.py --project my-project --summary "Initialized codex-
 python3 scripts/memory_search.py --project my-project --q "Initialized"
 ```
 
+## Demo
+
+```bash
+$ python3 scripts/memory_add.py --project my-project --summary "Added DB-backed memory"
+ok
+
+$ python3 scripts/memory_search.py --project my-project --q "memory" --limit 1
+#1 2026-02-12 12:00:00 [my-project] ()
+Added DB-backed memory
+-
+```
+
 ## Why It Works
 
 codex-mem enforces a repeatable memory loop:
