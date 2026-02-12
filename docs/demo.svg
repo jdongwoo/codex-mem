@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="420" viewBox="0 0 900 420">
+  <rect width="900" height="420" fill="#0b0f14"/>
+  <rect x="30" y="30" width="840" height="360" rx="14" fill="#111824" stroke="#1f2a3a"/>
+  <text x="60" y="80" font-family="SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="18" fill="#9fb5cc">codex-mem demo</text>
+  <text x="60" y="125" font-family="SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="16" fill="#c7d4e1">$ python3 scripts/memory_add.py --project my-project --summary "Added DB-backed memory"</text>
+  <text x="60" y="155" font-family="SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="16" fill="#9ad98f">ok</text>
+  <text x="60" y="205" font-family="SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="16" fill="#c7d4e1">$ python3 scripts/memory_search.py --project my-project --q "memory" --limit 1</text>
+  <text x="60" y="235" font-family="SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="16" fill="#c7d4e1">#1 2026-02-12 12:00:00 [my-project] ()</text>
+  <text x="60" y="265" font-family="SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="16" fill="#c7d4e1">Added DB-backed memory</text>
+  <text x="60" y="295" font-family="SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="16" fill="#c7d4e1">-</text>
+</svg>
