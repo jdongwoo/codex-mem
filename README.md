@@ -92,6 +92,20 @@ pip install chromadb
 
 Use `AGENTS.md` to make the memory workflow automatic in your Codex projects.
 
+## Contributing
+
+Contributions are welcome from first-time and experienced contributors.
+
+- Start here: `CONTRIBUTING.md`
+- Code of conduct: `CODE_OF_CONDUCT.md`
+- Beginner-friendly tasks: Issues labeled `good first issue`
+
+If you are new to the project, good starter areas are:
+
+- CLI argument UX improvements (`scripts/memory_*.py`)
+- Search ranking and filtering behavior (`scripts/core/search.py`)
+- Documentation examples and troubleshooting (`README.md`, `docs/`)
+
 ## Auto-Start With Codex
 
 To run `codex-mem` automatically whenever you launch `codex`, add this wrapper to `~/.zshrc`:

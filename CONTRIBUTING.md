@@ -1,23 +1,60 @@
 # Contributing
 
-Thanks for considering a contribution.
+Thanks for considering a contribution to `codex-mem`.
 
-## Quick Start
+## Contribution Types
 
-1. Fork the repo and create a feature branch.
-2. Keep changes focused and minimal.
-3. Run the basic check:
+- Bug fixes
+- Search quality improvements
+- CLI ergonomics
+- Docs and examples
+- New integration ideas (proposed first, then implemented)
+
+## Development Setup
 
 ```bash
+git clone https://github.com/jdongwoo/codex-mem.git
+cd codex-mem
+python3 scripts/memory_init.py
 python -m py_compile scripts/*.py
 ```
 
-## Pull Requests
+Optional semantic search dependency:
 
-- Provide a clear summary and motivation.
-- Include tests or a brief manual verification.
-- Keep docs in sync with behavior.
+```bash
+pip install chromadb
+```
 
-## Issues
+## First Contribution Guide
 
-Use Issues for bugs and enhancements. For questions, use Discussions.
+1. Pick an issue labeled `good first issue` or `help wanted`.
+2. Comment on the issue to claim it and align on scope.
+3. Keep PRs focused (one behavior change per PR).
+4. Add or update docs for user-facing behavior changes.
+5. Run `python -m py_compile scripts/*.py` before opening PR.
+
+## Pull Request Expectations
+
+- Clear problem statement and motivation
+- Concise change summary
+- Verification notes (manual or automated)
+- Backward compatibility notes when behavior changes
+
+Use `.github/PULL_REQUEST_TEMPLATE.md`.
+
+## Design Direction
+
+- Avoid ad-hoc feature patching.
+- Keep domain logic separate from interfaces.
+- Prefer explicit contracts and incremental architecture changes.
+
+## Code Style
+
+- Keep code simple and explicit.
+- Prefer small functions and predictable control flow.
+- Avoid broad refactors unless discussed in an issue first.
+
+## Reporting Issues
+
+Use issue templates for bug reports and feature requests.  
+For questions, use GitHub Discussions.
