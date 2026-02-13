@@ -1,9 +1,10 @@
 import os
 import sqlite3
 from pathlib import Path
-from urllib.parse import urlparse
 
-DEFAULT_DB_URL = "sqlite://" + str(Path.home() / ".codex-mem" / "codex-mem.db")
+from core.config import get_data_dir, load_settings
+
+DEFAULT_DB_URL = "sqlite://" + str(get_data_dir() / "codex-mem.db")
 
 
 def get_db_url() -> str:
@@ -18,6 +19,9 @@ def parse_db_url(db_url: str):
 
 
 def connect():
+    # Ensure settings file exists on first run.
+    load_settings()
+
     db_url = get_db_url()
     dialect, target = parse_db_url(db_url)
 
@@ -28,7 +32,6 @@ def connect():
         conn.row_factory = sqlite3.Row
         return conn, "sqlite"
 
-    # PostgreSQL
     try:
         import psycopg  # type: ignore
     except Exception as exc:
