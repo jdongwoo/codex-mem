@@ -92,6 +92,34 @@ pip install chromadb
 
 Use `AGENTS.md` to make the memory workflow automatic in your Codex projects.
 
+## Auto-Start With Codex
+
+To run `codex-mem` automatically whenever you launch `codex`, add this wrapper to `~/.zshrc`:
+
+```bash
+codex() {
+  local ROOT PROJECT MEM
+  ROOT="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
+  PROJECT="$(basename "$ROOT")"
+  MEM="/Users/a123/proj/kn-codex-pro/codex-mem/scripts"
+
+  python3 "$MEM/memory_init.py" >/dev/null 2>&1 || true
+  python3 "$MEM/memory_search.py" \
+    --project "$PROJECT" \
+    --q "recent decisions architecture bugs" \
+    --limit 5 \
+    --strategy auto || true
+
+  command codex "$@"
+}
+```
+
+Apply it:
+
+```bash
+source ~/.zshrc
+```
+
 ## License
 
 Apache-2.0
