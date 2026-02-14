@@ -8,6 +8,7 @@ DEFAULTS: Dict[str, str] = {
     "CODEX_MEM_VECTOR_ENABLED": "true",
     "CODEX_MEM_VECTOR_PROVIDER": "chroma",
     "CODEX_MEM_VECTOR_COLLECTION": "codex-mem",
+    "CODEX_MEM_VECTOR_COLLECTION_TURNS": "codex-mem-turns",
     "CODEX_MEM_VECTOR_TOP_K": "50",
     "CODEX_MEM_PYTHON_VERSION": "3.13",
     "CODEX_MEM_LOG_LEVEL": "INFO",

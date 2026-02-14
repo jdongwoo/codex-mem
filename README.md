@@ -14,6 +14,7 @@ If this is useful, please star the repo.
 - SQLite by default, PostgreSQL supported
 - Hybrid search: SQLite filters + optional Chroma semantic retrieval
 - Project-scoped summaries and decisions
+- Conversation turns persisted with optional vector retrieval
 
 ## Quick Start
 
@@ -22,6 +23,8 @@ python3 scripts/memory_init.py
 python3 scripts/memory_add.py --project my-project --summary "Initialized codex-mem"
 python3 scripts/memory_search.py --project my-project --q "Initialized"
 python3 scripts/memory_backfill.py --project my-project
+python3 scripts/conversation_add.py --project my-project --session-id s1 --role user --content "How does search work?"
+python3 scripts/conversation_search.py --project my-project --session-id s1 --q "search" --strategy auto
 ```
 
 ## Demo
@@ -80,6 +83,7 @@ Supported keys:
 - `CODEX_MEM_VECTOR_ENABLED` (`true`/`false`)
 - `CODEX_MEM_VECTOR_PROVIDER` (`chroma`)
 - `CODEX_MEM_VECTOR_COLLECTION`
+- `CODEX_MEM_VECTOR_COLLECTION_TURNS`
 - `CODEX_MEM_VECTOR_TOP_K`
 
 Install optional semantic search dependency:
