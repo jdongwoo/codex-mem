@@ -1,22 +1,16 @@
 # codex-mem
 
-![logo](docs/logo.svg)
+Persistent, project-scoped memory for the Codex CLI, backed by a local SQL database.
 
-![license](https://img.shields.io/github/license/jdongwoo/codex-mem)
-![stars](https://img.shields.io/github/stars/jdongwoo/codex-mem?style=flat)
-![issues](https://img.shields.io/github/issues/jdongwoo/codex-mem)
+Codex forgets everything between sessions. codex-mem gives it a durable memory loop: search stored context before acting, summarize after acting, and keep the result in SQL for long-term recall.
 
-Persistent memory for Codex using a local SQL database.
-
-If this is useful, please star the repo.
-
-- Fast CLI workflow (init/add/search/backfill)
+- CLI workflow: init, add, search, backfill
 - SQLite by default, PostgreSQL supported
-- Hybrid search: SQLite filters + optional Chroma semantic retrieval
+- Hybrid search: SQL metadata filters combined with optional Chroma semantic retrieval
 - Project-scoped summaries and decisions
 - Conversation turns persisted with optional vector retrieval
 
-## Quick Start
+## Quick start
 
 ```bash
 python3 scripts/memory_init.py
@@ -31,14 +25,6 @@ python3 scripts/conversation_search.py --project my-project --session-id s1 --q 
 
 ![demo](docs/demo.svg)
 
-## Why It Works
-
-codex-mem enforces a repeatable memory loop:
-
-1. Search before you act
-2. Summarize after you act
-3. Store it in SQL for long-term recall
-
 ## Database
 
 Default location:
@@ -47,23 +33,25 @@ Default location:
 ~/.codex-mem/codex-mem.db
 ```
 
-PostgreSQL:
+To use PostgreSQL instead:
 
 ```bash
 export CODEX_MEM_DATABASE_URL=postgresql://user:pass@localhost:5432/codex_mem
 python3 scripts/memory_init.py
 ```
 
-## Search Strategies
+Schemas for both backends live in `db/`.
+
+## Search strategies
 
 `memory_search.py` supports:
 
-- `--strategy auto` (default): Hybrid (vector + SQLite filters) when available, then fallback
-- `--strategy sqlite`: SQL-only search/filter
-- `--strategy chroma`: Semantic-only retrieval + SQLite hydration
-- `--strategy hybrid`: Semantic ranking intersected with SQLite metadata filters
+- `--strategy auto` (default): hybrid (vector + SQLite filters) when available, with fallback
+- `--strategy sqlite`: SQL-only search and filtering
+- `--strategy chroma`: semantic-only retrieval, hydrated from SQLite
+- `--strategy hybrid`: semantic ranking intersected with SQLite metadata filters
 
-Useful filters:
+Filters can be combined:
 
 ```bash
 python3 scripts/memory_search.py --project my-project --q "migration" --type bugfix --concept database --file schema --since 2026-01-01
@@ -71,13 +59,7 @@ python3 scripts/memory_search.py --project my-project --q "migration" --type bug
 
 ## Settings
 
-First run creates:
-
-```
-~/.codex-mem/settings.json
-```
-
-Supported keys:
+The first run creates `~/.codex-mem/settings.json`. Supported keys:
 
 - `CODEX_MEM_DATA_DIR`
 - `CODEX_MEM_VECTOR_ENABLED` (`true`/`false`)
@@ -86,40 +68,22 @@ Supported keys:
 - `CODEX_MEM_VECTOR_COLLECTION_TURNS`
 - `CODEX_MEM_VECTOR_TOP_K`
 
-Install optional semantic search dependency:
+Semantic search is optional and requires:
 
 ```bash
 pip install chromadb
 ```
 
-## Project Rules
+## Automatic startup with Codex
 
-Use `AGENTS.md` to make the memory workflow automatic in your Codex projects.
-
-## Contributing
-
-Contributions are welcome from first-time and experienced contributors.
-
-- Start here: `CONTRIBUTING.md`
-- Code of conduct: `CODE_OF_CONDUCT.md`
-- Beginner-friendly tasks: Issues labeled `good first issue`
-
-If you are new to the project, good starter areas are:
-
-- CLI argument UX improvements (`scripts/memory_*.py`)
-- Search ranking and filtering behavior (`scripts/core/search.py`)
-- Documentation examples and troubleshooting (`README.md`, `docs/`)
-
-## Auto-Start With Codex
-
-To run `codex-mem` automatically whenever you launch `codex`, add this wrapper to `~/.zshrc`:
+To load recent project memory whenever you launch `codex`, add a wrapper to your shell profile (adjust the path to your clone):
 
 ```bash
 codex() {
   local ROOT PROJECT MEM
   ROOT="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
   PROJECT="$(basename "$ROOT")"
-  MEM="/Users/a123/proj/kn-codex-pro/codex-mem/scripts"
+  MEM="/path/to/codex-mem/scripts"
 
   python3 "$MEM/memory_init.py" >/dev/null 2>&1 || true
   python3 "$MEM/memory_search.py" \
@@ -132,11 +96,19 @@ codex() {
 }
 ```
 
-Apply it:
+See `AGENTS.md` for project rules that make the memory workflow automatic inside Codex sessions.
 
-```bash
-source ~/.zshrc
-```
+## Architecture
+
+An overview of the storage model and search pipeline is in `docs/architecture.md`.
+
+## Contributing
+
+Contributions are welcome. Start with `CONTRIBUTING.md`; issues labeled `good first issue` are a reasonable entry point. Useful starter areas:
+
+- CLI argument UX (`scripts/memory_*.py`)
+- Search ranking and filtering (`scripts/core/search.py`)
+- Documentation examples and troubleshooting (`README.md`, `docs/`)
 
 ## License
 
